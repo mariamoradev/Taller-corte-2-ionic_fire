@@ -1,18 +1,10 @@
 <app-header title="Login"></app-header>
 <ion-content>
   <div class="d-flex-center">
-    <form
-      [formGroup]="form"
-      class="auth-form"
-      (ngSubmit)="submit()"
-      (keypress)="submit()"
-    >
+    <form [formGroup]="form" class="auth-form" (ngSubmit)="submit()" (keypress)="submit()">
+
       <app-logo></app-logo>
-      <app-custom-input
-        autocomplete="email"
-        icon="mail-outline"
-        [control]="form.controls.email"
-        type="email"
+      <app-custom-input autocomplete="email" icon="mail-outline" [control]="form.controls.email"type="email"
         label="Email"
       >
       </app-custom-input>
@@ -47,7 +39,7 @@
       <p routerLink="forgot-password" class="ion-text-end">
         Forgot your password?
       </p>
-      <app-button [disabled]="form.invalid"></app-button>
+      <app-button value="Login"></app-button>
 
       <ion-button routerLink="/sign-up" class="ion-margin-top" expand="block"mode="ios" fill="outline"> 
         Register
