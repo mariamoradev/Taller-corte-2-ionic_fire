@@ -8,10 +8,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ButtonComponent } from './components/button/button.component';
 import { CoreModule } from '../core/core.module';
+import { AvatarComponent } from './components/avatar/avatar.component';
 
 
 const COMPONENTS = [CustomInputComponent, HeaderComponent, LogoComponent,
-  ButtonComponent]
+  ButtonComponent, AvatarComponent]
 
 const MODULES =[CommonModule,
   IonicModule,
