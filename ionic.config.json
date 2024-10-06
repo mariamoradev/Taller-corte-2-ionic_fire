@@ -1,0 +1,7 @@
+{
+  "name": "ionic_fire_corte2_taller",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
