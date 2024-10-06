@@ -1,0 +1,6 @@
+<ion-avatar (click)="file.click()">
+  <img alt="Avatar" src="image" />
+</ion-avatar>
+
+<!--multiple es para decir que nos procese un solo archivo--->
+<input [accept]="mimeType" [multiple]="false" (change)="uploadFile($event)" type="file" #file style="opacity: 0;">
