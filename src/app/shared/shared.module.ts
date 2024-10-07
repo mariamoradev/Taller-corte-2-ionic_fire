@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonComponent } from './components/button/button.component';
 import { CoreModule } from '../core/core.module';
 import { AvatarComponent } from './components/avatar/avatar.component';
+import { StorageService } from './services/storage/storage.service';
 
 
 const COMPONENTS = [CustomInputComponent, HeaderComponent, LogoComponent,
@@ -19,11 +20,16 @@ const MODULES =[CommonModule,
   ReactiveFormsModule,
   FormsModule,
   CoreModule
-  ]  
+  ] ;
+
+  const PROVIDERS = [
+StorageService,
+
+  ];
 
 @NgModule({
   declarations: [...COMPONENTS],
-   
+  providers: [PROVIDERS],
   exports: [ ...COMPONENTS,
     ReactiveFormsModule, ...MODULES
   ],

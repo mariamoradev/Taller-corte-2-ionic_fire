@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { StorageService } from '../../services/storage/storage.service';
 
 @Component({
   selector: 'app-avatar',
@@ -13,13 +14,20 @@ export class AvatarComponent  implements OnInit {
     @Input() onlyView = false; //limitarlo a solo lectura
 
     protected mimeType = "image/jpeg"; //para que solo sean archivos de imagenes
-  constructor() { }
+  constructor(private readonly storageSrv: StorageService) { }
 
   ngOnInit() {}
 
 
-  public uploadFile(event:any){
-    console.log(event.target.files[0]);
+  public async uploadFile(event:any){
+    try {
+      console.log(event.target.files[0]);
+      const url= await this.storageSrv.uploadFileAndGetUrl(event.target.files[0]);
+      console.log("Avatar component  ~ upload file - url", url)
+               } catch (error) {
+      console.error(error)
+    }
+    
   }
 
 }
