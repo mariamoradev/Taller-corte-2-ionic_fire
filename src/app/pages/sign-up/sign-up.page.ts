@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -17,15 +18,23 @@ export class SignUpPage implements OnInit {
   public id!: FormControl;
   public phone!: FormControl;
 
-  constructor() { 
+  constructor(private readonly authSrv: AuthService) { 
     this.initForm();
   }
 
   ngOnInit() {
   }
 
-  public doRegister(){
-    console.log(this.registerForm.value);
+  public async doRegister(){
+    try {
+      console.log(this.registerForm.value);
+      const{email, password} = this.registerForm.value;
+      const response= await this.authSrv.register(email, password);
+       
+    } catch (error) {
+      console.error(error);
+    }
+    
   }
 
   private initForm(){
