@@ -24,8 +24,8 @@ const MODULES =[CommonModule,
   ] ;
 
   const PROVIDERS = [
-StorageService,
-AuthService
+  StorageService,
+  AuthService
 
   ];
 

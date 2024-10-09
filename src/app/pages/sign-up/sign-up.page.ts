@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NavController } from '@ionic/angular';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 
 @Component({
@@ -8,17 +9,20 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
   styleUrls: ['./sign-up.page.scss'],
 })
 export class SignUpPage implements OnInit {
-  public image!: FormControl;
-  public name!: FormControl;
+  public name!: FormControl; 
   public lastName!: FormControl;
+  public age!: FormControl;
+  public phone!: FormControl;
+  public id!: FormControl;
+  public image!: FormControl;
   public email!: FormControl;
   public password!: FormControl;
   public registerForm!: FormGroup;
-  public age!: FormControl;
-  public id!: FormControl;
-  public phone!: FormControl;
+  
+  
+  
 
-  constructor(private readonly authSrv: AuthService) { 
+  constructor(private readonly authSrv: AuthService, private readonly navCtrl: NavController) { 
     this.initForm();
   }
 
@@ -30,6 +34,7 @@ export class SignUpPage implements OnInit {
       console.log(this.registerForm.value);
       const{email, password} = this.registerForm.value;
       const response= await this.authSrv.register(email, password);
+      this.navCtrl
        
     } catch (error) {
       console.error(error);
@@ -38,26 +43,23 @@ export class SignUpPage implements OnInit {
   }
 
   private initForm(){
-    this.image = new FormControl("");
     this.name = new FormControl("",[Validators.required]);
     this.lastName = new FormControl("",[Validators.required]);
+    this.age = new FormControl("",[Validators.required]);
+    this.image = new FormControl("");
     this.email = new FormControl("",[Validators.required]);
     this.password = new FormControl("",[Validators.required]);
-    this.age = new FormControl("",[Validators.required]);
-    this.id  = new FormControl("",[Validators.required]);
     this.phone = new FormControl("",[Validators.required]);
+    this.id  = new FormControl("",[Validators.required]);
     this.registerForm = new FormGroup({
-      image: this.image,
       name: this.name,
       lastName: this.lastName,
+      age: this.age,
       email: this.email,
       password: this.password,
-      age: this.age,
+      image: this.image,
+      phone: this.phone,
       id: this.id,
-      phone: this.phone
-
-
-      
     });
   }
 

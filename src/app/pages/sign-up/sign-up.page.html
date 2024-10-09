@@ -16,7 +16,7 @@
       <form [formGroup]="registerForm" (ngSubmit)="doRegister()" style="margin-bottom: 20px;">
         <ion-row>
           <ion-col>
-            <app-avatar></app-avatar>
+            <app-avatar [control]="image"></app-avatar>
           </ion-col>
         </ion-row>
 
@@ -36,11 +36,11 @@
           </ion-col>
         </ion-row>
 
-        <ion-row>
+        <!-- <ion-row>
           <ion-col>
             <app-custom-input [control]="id" label="id" type="number"></app-custom-input>
           </ion-col>
-        </ion-row>
+        </ion-row> -->
 
         <ion-row>
           <ion-col>
@@ -62,7 +62,7 @@
 
         <ion-row>
           <ion-col>
-            <app-button [disabled]="registerForm.invalid" value="Sign up" type="submit" class="button"></app-button>
+            <app-button value="Sign up" type="submit" class="button"></app-button>
           </ion-col>
         </ion-row> 
       </form>
