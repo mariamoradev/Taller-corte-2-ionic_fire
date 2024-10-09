@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { StorageService } from 'src/app/shared/services/storage/storage.service';
+import {AngularFirestore} from '@angular/fire/compat/firestore';
+import { LoadingService } from 'src/app/shared/components/controllers/loading/loading.service';
+
 
 @Component({
   selector: 'app-sign-up',
@@ -13,16 +17,15 @@ export class SignUpPage implements OnInit {
   public lastName!: FormControl;
   public age!: FormControl;
   public phone!: FormControl;
-  public id!: FormControl;
   public image!: FormControl;
   public email!: FormControl;
   public password!: FormControl;
   public registerForm!: FormGroup;
   
-  
-  
 
-  constructor(private readonly authSrv: AuthService, private readonly navCtrl: NavController) { 
+  constructor(private readonly authSrv: AuthService, private readonly navCtrl: NavController, 
+    private readonly LoadingSrv: LoadingService, private readonly AngularFire: AngularFirestore,
+    private readonly StorageSrv: StorageService) { 
     this.initForm();
   }
 
@@ -30,16 +33,34 @@ export class SignUpPage implements OnInit {
   }
 
   public async doRegister(){
-    try {
+    try { 
+      await this.LoadingSrv.show();
       console.log(this.registerForm.value);
-      const{email, password} = this.registerForm.value;
-      const response= await this.authSrv.register(email, password);
+      const{email, password, image} = this.registerForm.value;
+      const response: any= await this.authSrv.register(email, password);
+      const userID = response.user?.uid;
+      if(!userID){
+        throw new Error('Mondongo');
+      }
       this.navCtrl
+
+      //extraccion de imagen
+      let imageurl = "";
+      if(image){
+        imageurl = await this.StorageSrv.uploadFileAndGetUrl(image);
+      }else {
+        console.warn('AAAAAAAAAAAAAA');
+      }
+      //llamas la funcion del register y mandarlo
+      await this.signUser(userID, email, imageurl);{
+        await this.LoadingSrv.dimiss();
+        this.navCtrl.navigateForward("/auth");
+      } 
        
     } catch (error) {
       console.error(error);
-    }
-    
+      await this.LoadingSrv.dimiss();
+    } 
   }
 
   private initForm(){
@@ -50,7 +71,6 @@ export class SignUpPage implements OnInit {
     this.email = new FormControl("",[Validators.required]);
     this.password = new FormControl("",[Validators.required]);
     this.phone = new FormControl("",[Validators.required]);
-    this.id  = new FormControl("",[Validators.required]);
     this.registerForm = new FormGroup({
       name: this.name,
       lastName: this.lastName,
@@ -59,8 +79,26 @@ export class SignUpPage implements OnInit {
       password: this.password,
       image: this.image,
       phone: this.phone,
-      id: this.id,
+
     });
+  }
+  //Mandar los datos
+  private async signUser(userID: string, email: string, imageurl: string){
+    try{
+      await this.AngularFire.collection('user').doc(userID).set({
+        email,
+        image: imageurl,
+        name: this.registerForm.get('name')?.value,
+        lastName: this.registerForm.get('lastName')?.value,
+        age: this.registerForm.get('age')?.value,
+        phone: this.registerForm.get('phone')?.value,
+        
+      });
+      console.log('Yes');
+    }catch(error){
+      console.error('No', error);
+      throw error;
+    }
   }
 
 }
