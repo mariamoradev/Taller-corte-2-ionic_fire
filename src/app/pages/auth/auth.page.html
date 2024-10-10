@@ -1,7 +1,7 @@
 <app-header title="Login"></app-header>
 <ion-content>
   <div class="d-flex-center">
-    <form [formGroup]="loginForm" class="auth-form" (ngSubmit)="doLogin()" (keypress)="doLogin()">
+    <form [formGroup]="loginForm" class="auth-form" (ngSubmit)="doLogin()">
 
       <app-logo></app-logo>
       <app-custom-input [control]="email" autocomplete="email" icon="mail-outline" type="email"
@@ -9,7 +9,7 @@
       >
       </app-custom-input>
 
-      <div
+      <!-- <div
         class="validators"
         *ngIf="email.errors && email.touched"
       >
@@ -19,16 +19,16 @@
         <div *ngIf="email.errors?.['email']">
           Please, enter a valid email address
         </div>
-      </div>
+      </div> -->
 
       <app-custom-input
         [control]="password"
         icon="lock-closed-outline"
         type="password"
-        label="Password"
+        label="password"
       ></app-custom-input>
 
-      <div
+      <!-- <div
         class="validators"
         *ngIf="password.errors && password.touched"
       >
@@ -38,8 +38,8 @@
       </div>
       <p routerLink="/forgot-password" class="ion-text-end">
         Forgot your password?
-      </p>
-      <app-button type="submit" [disabled]="loginForm.invalid" value="Login"></app-button>
+      </p> -->
+      <app-button type="submit" [disabled]="this.loginForm.invalid" value="Login"></app-button>
 
       <ion-button routerLink="/sign-up" class="ion-margin-top" expand="block"mode="ios" fill="outline"> 
         Register
@@ -47,4 +47,4 @@
       </ion-button>
     </form>
   </div>
-</ion-content>
+</ion-content>  

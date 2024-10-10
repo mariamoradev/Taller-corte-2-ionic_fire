@@ -13,10 +13,9 @@ export class AuthService {
       this.fbAuth.createUserWithEmailAndPassword(email, password)
       .then((res) => resolve(res))
       .catch((err) => reject(err));
-      
-
     });
   }
+  
   public Login(email: string, password: string){
       return new Promise((resolve, reject)=>{
         this.fbAuth.signInWithEmailAndPassword(email, password)

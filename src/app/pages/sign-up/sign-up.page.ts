@@ -87,7 +87,7 @@ export class SignUpPage implements OnInit {
     try{
       await this.AngularFire.collection('user').doc(userID).set({
         email,
-        image: imageurl,
+        image: imageurl, 
         name: this.registerForm.get('name')?.value,
         lastName: this.registerForm.get('lastName')?.value,
         age: this.registerForm.get('age')?.value,
