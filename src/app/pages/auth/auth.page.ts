@@ -29,6 +29,7 @@ export class AuthPage implements OnInit {
       const { email, password } = this.loginForm.value;
       await this.authSrv.Login(email, password);
       this.navCtrl.navigateForward("home");
+      
       //Mensaje de bienvenida en caso de exito:
       this.toastservice.presentToast('Welcome, dear user', 2000, 'top');
     }catch(error){
