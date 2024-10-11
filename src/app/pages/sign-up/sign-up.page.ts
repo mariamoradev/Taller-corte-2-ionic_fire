@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { StorageService } from 'src/app/shared/services/storage/storage.service';
 import {AngularFirestore} from '@angular/fire/compat/firestore';
 import { LoadingService } from 'src/app/shared/components/controllers/loading/loading.service';
+import { ToastService } from 'src/app/shared/services/toast.service';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class SignUpPage implements OnInit {
 
   constructor(private readonly authSrv: AuthService, private readonly navCtrl: NavController, 
     private readonly LoadingSrv: LoadingService, private readonly AngularFire: AngularFirestore,
-    private readonly StorageSrv: StorageService) { 
+    private readonly StorageSrv: StorageService, private readonly toastservice: ToastService) { 
     this.initForm();
   }
 
@@ -40,7 +41,7 @@ export class SignUpPage implements OnInit {
       const response: any= await this.authSrv.register(email, password);
       const userID = response.user?.uid;
       if(!userID){
-        throw new Error('Mondongo');
+        throw new Error('Failed to get user ID.');
       }
       this.navCtrl
 
@@ -49,17 +50,25 @@ export class SignUpPage implements OnInit {
       if(image){
         imageurl = await this.StorageSrv.uploadFileAndGetUrl(image);
       }else {
-        console.warn('AAAAAAAAAAAAAA');
+        console.warn('No image was provided.');
       }
       //llamas la funcion del register y mandarlo
       await this.signUser(userID, email, imageurl);{
         await this.LoadingSrv.dimiss();
+
+        //Mensaje exito:
+        this.toastservice.presentToast('Registration successful, welcome!',2000,'top');
+
+        // navegation pagina de inicio de sesión
         this.navCtrl.navigateForward("/auth");
       } 
        
     } catch (error) {
       console.error(error);
       await this.LoadingSrv.dimiss();
+
+      //Mensajito error:
+      this.toastservice.presentErrorToast('Registration failed. Please try again.');
     } 
   }
 
