@@ -1,5 +1,7 @@
 <app-header title="Login"></app-header>
-<ion-content>
+<div></div>
+<ion-content class="login-background">
+
   <div class="d-flex-center">
     <form [formGroup]="loginForm" class="auth-form" (ngSubmit)="doLogin()">
 
@@ -41,10 +43,11 @@
       </p> -->
       <app-button type="submit" [disabled]="this.loginForm.invalid" value="Login"></app-button>
 
-      <ion-button routerLink="/sign-up" class="ion-margin-top" expand="block"mode="ios" fill="outline"> 
+      <ion-button routerLink="/sign-up" class="register" expand="block"mode="ios" fill="outline"> 
         Register
         <ion-icon slot="end" name="person-add-outline"></ion-icon>
       </ion-button>
     </form>
   </div>
+
 </ion-content>  

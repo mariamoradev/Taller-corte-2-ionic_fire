@@ -1,0 +1,61 @@
+
+ion-content.login-background {
+    --background: url('/assets/icon/login.jpg') no-repeat center center fixed;
+    background: linear-gradient(rgba(3, 3, 86, 0.501), rgba(12, 2, 2, 0.147)), 
+                url('/assets/icon/login.jpg') no-repeat center center fixed; 
+    
+    height: 100%;
+    width: 100%;
+    
+    background-size: cover;
+    max-width: 400%;
+ 
+  }
+  
+  /*Evitando que el contenedor se suba con todo y casilla*/
+  .d-flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 20px;
+    //form centrado:
+    position: relative;
+    border-radius: 50%;
+  }
+  
+  .auth-form {
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.374); // Transparencia
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Sombritas
+    width: 100%;
+    max-width: 340px; // tamaño form
+    text-align: center;
+    
+  }
+
+  input{
+    font-size: 16px;
+    color: #333;
+  }
+
+  //Evitando el contenido se suba
+  ion-input, ion-textarea, ion-select {
+    --padding-bottom: 10px;
+    --padding-top: 10px;
+  }
+
+  .register{
+    margin-top: 5%;
+    color: aliceblue;
+    font-weight: 5em;
+    
+   
+
+    
+  }
+  
+
+  
