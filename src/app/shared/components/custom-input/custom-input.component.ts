@@ -26,9 +26,9 @@ export class CustomInputComponent  implements OnInit {
     if (this.type == 'password') this.isPassword = true;
   }
 
-  public setValue(event: any){
-    this.control.setValue(event.target.value);
-  }
+   public setValue(event: any){
+     this.control.setValue(event.target.value);
+   }
 
   showOrHidePassword(){
     this.hide = !this.hide;

@@ -10,8 +10,8 @@ type buttonType = "button" | "submit";
 })
 export class ButtonComponent  implements OnInit {
   @Input({required: true}) value = "";
-  @Input() disabled = false;
   @Input() type: buttonType = "submit";
+  @Input() disabled = false;
 
   constructor() { }
 

@@ -11,6 +11,7 @@ import { CoreModule } from '../core/core.module';
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { StorageService } from './services/storage/storage.service';
 import { AuthService } from './services/auth/auth.service';
+import { ToastService } from './services/toast.service';
 
 
 const COMPONENTS = [CustomInputComponent, HeaderComponent, LogoComponent,
@@ -24,8 +25,9 @@ const MODULES =[CommonModule,
   ] ;
 
   const PROVIDERS = [
-StorageService,
-AuthService
+  StorageService,
+  AuthService,
+  ToastService
 
   ];
 

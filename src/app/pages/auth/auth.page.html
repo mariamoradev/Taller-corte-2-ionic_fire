@@ -1,50 +1,53 @@
 <app-header title="Login"></app-header>
-<ion-content>
+<div></div>
+<ion-content class="login-background">
+
   <div class="d-flex-center">
-    <form [formGroup]="form" class="auth-form" (ngSubmit)="submit()" (keypress)="submit()">
+    <form [formGroup]="loginForm" class="auth-form" (ngSubmit)="doLogin()">
 
       <app-logo></app-logo>
-      <app-custom-input autocomplete="email" icon="mail-outline" [control]="form.controls.email"type="email"
+      <app-custom-input [control]="email" autocomplete="email" icon="mail-outline" type="email"
         label="Email"
       >
       </app-custom-input>
 
-      <div
+      <!-- <div
         class="validators"
-        *ngIf="form.controls.email.errors && form.controls.email.touched"
+        *ngIf="email.errors && email.touched"
       >
-        <div *ngIf="form.controls.email.errors?.['required']">
+        <div *ngIf="email.errors?.['required']">
           Dear user, the email is required
         </div>
-        <div *ngIf="form.controls.email.errors?.['email']">
+        <div *ngIf="email.errors?.['email']">
           Please, enter a valid email address
         </div>
-      </div>
+      </div> -->
 
       <app-custom-input
-        [control]="form.controls.password"
+        [control]="password"
         icon="lock-closed-outline"
         type="password"
-        label="Password"
+        label="password"
       ></app-custom-input>
 
-      <div
+      <!-- <div
         class="validators"
-        *ngIf="form.controls.password.errors && form.controls.password.touched"
+        *ngIf="password.errors && password.touched"
       >
-        <div *ngIf="form.controls.email.errors?.['required']">
+        <div *ngIf="email.errors?.['required']">
           Dear user, the password is required
         </div>
       </div>
       <p routerLink="/forgot-password" class="ion-text-end">
         Forgot your password?
-      </p>
-      <app-button value="Login"></app-button>
+      </p> -->
+      <app-button type="submit" [disabled]="this.loginForm.invalid" value="Login"></app-button>
 
-      <ion-button routerLink="/sign-up" class="ion-margin-top" expand="block"mode="ios" fill="outline"> 
+      <ion-button routerLink="/sign-up" class="register" expand="block"mode="ios" fill="outline"> 
         Register
         <ion-icon slot="end" name="person-add-outline"></ion-icon>
       </ion-button>
     </form>
   </div>
-</ion-content>
+
+</ion-content>  
