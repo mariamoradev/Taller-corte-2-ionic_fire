@@ -23,5 +23,9 @@ export class AuthService {
         .catch((err) => reject(err));
       });
   }
+
+  logOut(){
+    return this.fbAuth.signOut();
+  }
 }
 
