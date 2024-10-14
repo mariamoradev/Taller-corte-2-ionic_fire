@@ -11,12 +11,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire/compat';
 
 import { environment } from 'src/environments/environment.prod';
+import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot({mode:'md'}), 
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule
     
 ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
