@@ -1,9 +1,25 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>home</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-<ion-button (click)="logout()" color="danger">Logout</ion-button>
+  <ion-card>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-text>Welcome</ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            
+            <a [routerLink]="['/sign-up', id]">Update</a>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-button (click)="logout()" color="danger">Logout</ion-button> 
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+          </ion-card-content>
+  </ion-card>
+
 </ion-content>
