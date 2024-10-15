@@ -43,10 +43,12 @@
       </p> -->
       <app-button type="submit" [disabled]="this.loginForm.invalid" value="Login"></app-button>
 
-      <ion-button routerLink="/sign-up" class="register" expand="block"mode="ios" fill="outline"> 
+      <ion-button [routerLink]="['/sign-up', '']" class="register" expand="block" mode="ios" fill="outline">
         Register
         <ion-icon slot="end" name="person-add-outline"></ion-icon>
       </ion-button>
+      
+    
     </form>
   </div>
 
