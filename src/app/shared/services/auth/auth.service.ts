@@ -23,5 +23,33 @@ export class AuthService {
         .catch((err) => reject(err));
       });
   }
+
+  logOut(){
+    return this.fbAuth.signOut();
+  }
+
+  public isAuth(){
+return new Promise((resolve, reject) => {
+  this.fbAuth.onAuthStateChanged((user) => {
+if(user){
+  resolve(true);
+
+}else{
+  resolve(false);
+}
+});
+
+});
+  }
+
+  public getCurrentUid(): Promise <string>{
+return new Promise((resolve, reject) => {
+this.fbAuth.currentUser.then((res) =>{
+  resolve(res?.uid || "");
+});
+});
+  }
+
+
 }
 

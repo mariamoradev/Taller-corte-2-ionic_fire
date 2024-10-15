@@ -13,7 +13,7 @@
 
   <ion-card>
     <ion-card-content style="margin-bottom: 20px;">
-      <form [formGroup]="registerForm" (ngSubmit)="doRegister()" style="margin-bottom: 20px;">
+      <form [formGroup]="registerForm" (ngSubmit)=" !id ? doRegister() :  doUpdate()" style="margin-bottom: 20px;">
         <ion-row>
           <ion-col>
             <app-avatar [control]="image"></app-avatar>
@@ -30,6 +30,8 @@
             <app-custom-input [control]="lastName" label="LastName" type="text"></app-custom-input>
           </ion-col>
         </ion-row>
+
+       
         <ion-row>
           <ion-col>
             <app-custom-input [control]="age" label="Age" type="number"></app-custom-input>
@@ -42,6 +44,7 @@
           </ion-col>
         </ion-row>
 
+        @if (!id){
         <ion-row>
           <ion-col>
             <app-custom-input [control]="email" label="Email" type="email"></app-custom-input>
@@ -53,10 +56,10 @@
             <app-custom-input [control]="password" label="Password" type="password"></app-custom-input>
           </ion-col>
         </ion-row>
-
+      }
         <ion-row>
           <ion-col>
-            <app-button value="Sign up" type="submit"></app-button>
+            <app-button [value]="!id? 'Register' : 'Update' " type="submit"></app-button>
           </ion-col>
         </ion-row> 
       </form>
