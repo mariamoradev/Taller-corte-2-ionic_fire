@@ -1,4 +1,62 @@
-.button{
-    margin-top: 0%;
-    margin-bottom: 90%;
+
+ion-content{
+    --background: none; /* Eliminando fondito predeterminado de Ionic */
+    background: url('/assets/icon/r.jpg') no-repeat center center fixed; 
+    background-size: cover; /*cubriendo todoel fondo */
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh; /* cubriendo altura */
+    width: 100vw;  /* cubriendo ancho */
+    position: relative; /* elementos en posicion correcta */
 }
+
+.regresar{
+
+    font-size: 2.1em;
+    margin-left: 4%;
+}
+
+
+  
+  
+  ion-card { //cartica de fondo redondeada
+
+    margin: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); //sombritas
+    background-color: rgba(255, 255, 255, 0.3); /* transparencia */
+    backdrop-filter: blur(8px); /* desenfoque  */
+
+    
+  }
+  
+  ion-toolbar {
+    --background: #3880ff; 
+    --color: white; 
+  }
+  
+  ion-title {
+    font-weight: bold; 
+    
+  }
+
+  
+  
+  app-custom-input {
+    --border-radius: 10px; 
+    --padding: 10px;
+   
+  }
+ 
+  ion-button {
+    --background: #3880ff; 
+    --border-radius: 20px; 
+    --padding: 10px 20px;
+    font-weight: bold;
+    width: 100%;
+  }
+  
+  ion-card-content {
+    padding: 20px;
+    font-size: 16px;
+  }

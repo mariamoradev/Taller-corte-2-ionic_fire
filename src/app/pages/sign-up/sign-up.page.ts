@@ -66,6 +66,7 @@ export class SignUpPage implements OnInit {
   }
 
   public async doRegister() {
+    if (this.registerForm.invalid) return; // Validar formulario antes de continuar
     try {
       await this.loadingSrv.show();
       const { email, password, image } = this.registerForm.value;
