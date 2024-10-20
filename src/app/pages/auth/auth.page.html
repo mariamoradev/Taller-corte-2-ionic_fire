@@ -11,18 +11,6 @@
       >
       </app-custom-input>
 
-      <!-- <div
-        class="validators"
-        *ngIf="email.errors && email.touched"
-      >
-        <div *ngIf="email.errors?.['required']">
-          Dear user, the email is required
-        </div>
-        <div *ngIf="email.errors?.['email']">
-          Please, enter a valid email address
-        </div>
-      </div> -->
-
       <app-custom-input
         [control]="password"
         icon="lock-closed-outline"
@@ -30,17 +18,6 @@
         label="password"
       ></app-custom-input>
 
-      <!-- <div
-        class="validators"
-        *ngIf="password.errors && password.touched"
-      >
-        <div *ngIf="email.errors?.['required']">
-          Dear user, the password is required
-        </div>
-      </div>
-      <p routerLink="/forgot-password" class="ion-text-end">
-        Forgot your password?
-      </p> -->
       <app-button type="submit" [disabled]="this.loginForm.invalid" value="Login"></app-button>
 
       <ion-button [routerLink]="['/sign-up', '']" class="register" expand="block" mode="ios" fill="outline">
