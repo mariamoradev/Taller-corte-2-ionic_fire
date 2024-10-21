@@ -4,6 +4,7 @@ import { NavController } from '@ionic/angular';
 import { ButtonComponent } from 'src/app/shared/components/button/button.component';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
 import { ToastService } from 'src/app/shared/services/toast.service';
+import { LoadingService } from 'src/app/shared/components/controllers/loading/loading.service';
 
 @Component({
   selector: 'app-auth',
@@ -17,7 +18,7 @@ export class AuthPage implements OnInit {
    public loginForm!: FormGroup;
  
 
-  constructor(private readonly authSrv: AuthService, private readonly navCtrl: NavController, private readonly toastservice: ToastService ){
+  constructor(private readonly authSrv: AuthService, private readonly navCtrl: NavController, private readonly toastservice: ToastService, private readonly loadingSrv: LoadingService){
     this.initForm();
   }
 
@@ -26,17 +27,19 @@ export class AuthPage implements OnInit {
 
   public async doLogin(){
   try{
+      await this.loadingSrv.show();
       const { email, password } = this.loginForm.value;
       await this.authSrv.Login(email, password);
+      await this.loadingSrv.dimiss();
       this.navCtrl.navigateForward("home");
       
       //Mensaje de bienvenida en caso de exito:
       this.toastservice.presentToast('Welcome, dear user', 2000, 'top');
     }catch(error){
-      console.error(error);
+      await this.loadingSrv.dimiss();
       this.toastservice.presentErrorToast('Invalid email or password, please try again');
     }
-    console.log(this.loginForm.value);
+    
   }
 
 
